@@ -172,12 +172,12 @@ const components: Record<string, React.ReactNode> = {
 		</>
 	),
 	Avatar: (
-		<>
+		<Stack spacing={1} direction="row">
 			<AvatarDefault />
 			<AvatarInitials />
 			<AvatarIcon />
 			<AvatarDecorative />
-		</>
+		</Stack>
 	),
 	AvatarGroup: <AvatarGroupDefault />,
 	Backdrop: <BackdropDefault />,
