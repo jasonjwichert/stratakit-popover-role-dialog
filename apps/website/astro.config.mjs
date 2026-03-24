@@ -1,6 +1,5 @@
 // @ts-check
 
-import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
 import remarkDirective from "remark-directive";
@@ -100,7 +99,6 @@ export default defineConfig({
 				starlightPrefixLinks(),
 			],
 		}),
-		react(),
 	],
 	devToolbar: { enabled: false },
 	vite: {
@@ -108,6 +106,18 @@ export default defineConfig({
 			assetsInlineLimit: (filePath) => {
 				if (filePath.endsWith(".svg")) return false;
 				return undefined;
+			},
+			rollupOptions: {
+				onwarn(warning, warn) {
+					// Suppress warnings about "use client" directive.
+					if (
+						warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+						warning.message.includes('"use client"')
+					) {
+						return;
+					}
+					warn(warning);
+				},
 			},
 		},
 		plugins: [vitePluginFixAstroSvg()],
