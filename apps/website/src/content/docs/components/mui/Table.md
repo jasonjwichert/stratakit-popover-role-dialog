@@ -18,3 +18,9 @@ links:
 ### Footer
 
 ::example{src="mui/Table.footer"}
+
+### Dense
+
+Use `size="small"` for compact interfaces with limited screen real estate or when displaying large datasets.
+
+::example{src="mui/Table.small"}
